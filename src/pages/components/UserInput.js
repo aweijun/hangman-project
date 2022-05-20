@@ -3,17 +3,23 @@ import React from 'react'
 
 function UserInput(props) {
 
-  const USER_STATE  = {
-    noTry: 0,
-    wrongTry: 1,
-    rightTry: 2,
+  const letter = props.letter
+  const word = props.word.split("")
+  
+  const guesses = props.guesses
+  const setGuesses = props.setGuesses
+
+  const handleInput = () => {
+    console.log(word)
+    if (word.includes(letter)) {
+      console.log("correct")
+      setGuesses(guesses.push(letter))
+    }
   }
 
-  const letter = props.letter
-
   return (
-    <Button>
-
+    <Button value = {letter.toUpperCase()} margin={'2px'} onClick={handleInput}>
+      {letter}
     </Button>
   )
 }

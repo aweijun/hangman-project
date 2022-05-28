@@ -1,19 +1,36 @@
-import { Button, color, Flex, Heading, Text, VStack } from '@chakra-ui/react'
+import { Button, color, Flex, Heading, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { isVisible } from '@testing-library/user-event/dist/utils'
 import React, { useEffect, useState } from 'react'
-import UserInput from './components/UserInput'
-import WordDisplay from './components/WordDisplay'
+import { useLocation } from 'react-router-dom'
+import AlertDuplicate from './components/AlertDuplicate'
+import EndGameModal from './components/EndGameModal'
+import HangManDisplay from './components/HangManDisplay'
+
 
 function GameScreen() {
   
   useEffect(() => endGame())
-  
+
+  const location = useLocation();
+  console.log(location.state)
+  const word = location.state["word"].toUpperCase();
+  const hint = location.state["hint"].toUpperCase();
+
   const [count, setCount] = useState(0) //This is the number of tries
   const [guesses, setGuesses] = useState([]) //This is the list of the given keyboard
-  const [word, setWord] = useState("HELLO")
   const correctLetters = word.split("")
 
-  const LETTERS = "abcdefghjklmnopqrstuvwxyz".toUpperCase()
+  const {isOpen: isOpenDuplicateError, onOpen: onOpenDuplicatedError, onClose: onCloseDuplicatedError} = useDisclosure()
+  const [isOpenEndGameModal, setEndGameModal] = useState(false)
 
+
+  const LETTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
+
+  const popupDelay = () => {
+    onOpenDuplicatedError()
+    setTimeout(() => onCloseDuplicatedError(), 1000)
+  }
+  
   const handleInput = (e) => {
     const letter = e.target.value
     console.log(letter)
@@ -21,6 +38,7 @@ function GameScreen() {
 
     if (guesses.includes(letter)) {
       console.log("This is already included")
+      popupDelay()
       return 
     }
 
@@ -29,7 +47,6 @@ function GameScreen() {
       setCount(count + 1)
     }
     setGuesses([...guesses, letter])
-    endGame()
   }
 
   const setButtonColor = (letter) => {
@@ -55,20 +72,26 @@ function GameScreen() {
     } else {
       if (displayWord().join("") == word) {
         console.log("You win")
+        setEndGameModal(true)
       }
     }
   }
+
   return (
     <VStack>
-    <Heading>
-      GameScreen
-    </Heading>
+      <Heading>
+        GameScreen
+      </Heading>
     <Text>
-      "Number of tries left " + {count}  
+      Number of tries left {count}  
     </Text>
+    <HangManDisplay count = {count}/>
     <Heading>
       {displayWord()}
     </Heading>
+    <Text>
+      {hint}
+    </Text>
     <Flex flexWrap={'wrap'} padding={5}>
       {LETTERS.split("").map(letter => (
         <Button value = {letter.toUpperCase()} margin={'2px'} onClick={handleInput} color={setButtonColor(letter)}>
@@ -76,6 +99,8 @@ function GameScreen() {
         </Button>
       ))}
     </Flex>
+        <AlertDuplicate isVisible={isOpenDuplicateError}/>
+        <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count}/>
     </VStack>
   )
 }

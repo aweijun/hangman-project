@@ -36,7 +36,7 @@ function StartGameScreen() {
 
   return (
     <Flex flexDir={"column"} padding={10} justifyContent={"space-evenly"} h={"100vh"}>
-      <div>StartGameScreen</div>
+      <div>Hangman The Game</div>
       <Textarea onChange={handleInputWord}>{word}</Textarea>
       <Textarea onChange={handleInputHint}>{hint}</Textarea>
       <Button onClick={() => submitWord()}>Start</Button>

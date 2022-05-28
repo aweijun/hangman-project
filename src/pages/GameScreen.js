@@ -69,6 +69,7 @@ function GameScreen() {
     console.log(word)
     if (count > 6) {
       console.log("You dead")
+      setEndGameModal(true)
     } else {
       if (displayWord().join("") == word) {
         console.log("You win")
@@ -100,7 +101,7 @@ function GameScreen() {
       ))}
     </Flex>
         <AlertDuplicate isVisible={isOpenDuplicateError}/>
-        <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count}/>
+        <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count} success = {count < 7}/>
     </VStack>
   )
 }

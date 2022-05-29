@@ -1,4 +1,4 @@
-import { Button, Flex, Input} from '@chakra-ui/react'
+import { Button, Flex, Heading, Input} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import IncorrectInput from './components/IncorrectInput'
@@ -35,11 +35,34 @@ function StartGameScreen() {
   }
 
   return (
-    <Flex flexDir={"column"} padding={10} justifyContent={"space-evenly"} h={"100vh"}>
-      <div>Hangman The Game</div>
-      <Input placeholder='Guess Word' onChange={handleInputWord}/>
-      <Input placeholder='Hint' onChange={handleInputWord}/>
-      <Button onClick={() => submitWord()}>Start</Button>
+    <Flex 
+    flexDir={"column"} 
+    padding={50}
+    margin={30} 
+    justifyContent={"space-evenly"} 
+    alignItems={"center"}
+    minW = {"60vw"}
+    minH = {"50vh"}
+    maxH={"100vh"}>
+      <Heading>Hangman the Game</Heading>
+      <Input 
+        maxWidth={'50vw'}
+        minW={'60vw'}
+        placeholder='Guess Word' 
+        onChange={handleInputWord}/>
+      <Input 
+        maxWidth={'50vw'}
+        minW={'60vw'}
+        placeholder='Hint'
+        onChange={handleInputWord}/>
+      <Button 
+        onClick={() => submitWord()}
+        minWidth={'30vw'}
+        maxWidth={'50vw'}
+        alignSelf="center"
+        >
+        Start
+      </Button>
       <IncorrectInput isVisible={isErrorVisible}/>
     </Flex>
   )

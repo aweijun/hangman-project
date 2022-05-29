@@ -41,7 +41,6 @@ function StartGameScreen() {
 
   return (
     <Flex 
-    border={'1px'}
     flexDir={"column"} 
     padding={50}
     margin={30} 

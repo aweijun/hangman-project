@@ -15,7 +15,7 @@ function EndGameModal(props) {
   const endGameDisplay = () => {
     if (isSuccess) {
       return <ModalContent>
-        <ModalHeader>Congrats</ModalHeader>
+        <ModalHeader>Congratulations</ModalHeader>
         <ModalBody>
           The word was {word}.
           <br/>

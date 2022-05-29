@@ -81,8 +81,6 @@ function GameScreen() {
   const displayWord = () => word.split("").map(letter => displayLetter(letter))
 
   const endGame = () => {
-    console.log("end" + displayWord())
-    console.log("endjoin" + displayWord().join(""))
     if (count > 5) {
       console.log("You dead")
       setEndGameModal(true)
@@ -128,7 +126,7 @@ function GameScreen() {
       ))}
     </Grid>
         <AlertDuplicate isVisible={isOpenDuplicateError}/>
-        <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count} success = {count < 7}/>
+        <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count} success = {count < 6}/>
     </VStack>
   )
 

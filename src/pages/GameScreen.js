@@ -1,6 +1,6 @@
-import { Button, color, Flex, Grid, GridItem, Heading, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { Button, color, Flex, Grid, GridItem, Heading, Input, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { isVisible } from '@testing-library/user-event/dist/utils'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import AlertDuplicate from './components/AlertDuplicate'
 import EndGameModal from './components/EndGameModal'
@@ -9,22 +9,28 @@ import HangManDisplay from './components/HangManDisplay'
 
 function GameScreen() {
   
-  useEffect(() => endGame())
-
+  
+  
   const location = useLocation();
   console.log(location.state)
   const word = location.state["word"].toUpperCase();
   const hint = location.state["hint"].toUpperCase();
-
+  
   const [count, setCount] = useState(0) //This is the number of tries
   const [guesses, setGuesses] = useState([]) //This is the list of the given keyboard
+  const guessRef = useRef(guesses)
   const correctLetters = word.split("")
 
   const {isOpen: isOpenDuplicateError, onOpen: onOpenDuplicatedError, onClose: onCloseDuplicatedError} = useDisclosure()
   const [isOpenEndGameModal, setEndGameModal] = useState(false)
-
-
+  
+  
   const LETTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
+  
+
+  
+  useEffect(() => endGame())
+
 
   const popupDelay = () => {
     onOpenDuplicatedError()
@@ -33,9 +39,6 @@ function GameScreen() {
   
   const handleInput = (e) => {
     const letter = e.target.value
-    console.log(letter)
-    console.log(guesses)
-
     if (guesses.includes(letter)) {
       console.log("This is already included")
       popupDelay()
@@ -48,6 +51,7 @@ function GameScreen() {
     }
     setGuesses([...guesses, letter])
   }
+  
 
   const setButtonColor = (letter) => {
     if (!guesses.includes(letter)) {
@@ -62,11 +66,24 @@ function GameScreen() {
     }
   }
 
-  const displayWord = () => word.split("").map(letter => (guesses.includes(letter) ? letter : " _ "))
+
+  const displayLetter = (e) => {
+    if (guesses.includes(e)) {
+      return e
+    } else {
+      if (e == ' ') {
+        return " - "
+      } else {
+        return " _ "
+      }
+    }
+  }
+
+  const displayWord = () => word.split("").map(letter => displayLetter(letter))
 
   const endGame = () => {
-    console.log(displayWord().join(""))
-    console.log(word)
+    console.log("end" + displayWord())
+    console.log("endjoin" + displayWord().join(""))
     if (count > 6) {
       console.log("You dead")
       setEndGameModal(true)
@@ -105,7 +122,7 @@ function GameScreen() {
             value = {letter.toUpperCase()} 
             onClick={handleInput} 
             color = {"whiteAlpha"}
-            colorScheme={setButtonColor(letter)}>
+            colorScheme={setButtonColor(letter)}j>
             {letter}
           </Button>
         </GridItem>

@@ -1,7 +1,8 @@
-import { Button, Flex, Heading, Input} from '@chakra-ui/react'
+import { Button, Flex, Grid, GridItem, Heading, Input} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import IncorrectInput from './components/IncorrectInput'
+import GenerateWords from '../GenerateWords'
 
 function StartGameScreen() {
   const [word, setWord] = useState("")
@@ -34,15 +35,20 @@ function StartGameScreen() {
     }
   }
 
+  const submitTopic = (arr) => () => {
+    navigate("/game", {state: {word: arr.word, hint:arr.hint}})
+  }
+
   return (
     <Flex 
+    border={'1px'}
     flexDir={"column"} 
     padding={50}
     margin={30} 
     justifyContent={"space-evenly"} 
     alignItems={"center"}
     minW = {"60vw"}
-    minH = {"50vh"}
+    minH = {"70vh"}
     maxH={"100vh"}>
       <Heading>Hangman the Game</Heading>
       <Input 
@@ -64,6 +70,22 @@ function StartGameScreen() {
         Start
       </Button>
       <IncorrectInput isVisible={isErrorVisible}/>
+      <Heading>
+        Choose from a Topic
+      </Heading>
+      <Grid templateColumns='repeat(2, 1fr)' gap={10}> 
+        {GenerateWords.map((item) => 
+          <GridItem>
+            <Button
+              w={'20vw'}
+              onClick={submitTopic(item.Questions[Math.floor((Math.random()*item.Questions.length))])}
+              fontSize = {['xs','sm']}
+            >
+              {item.Subject}
+            </Button>
+          </GridItem>
+        )}
+      </Grid>
     </Flex>
   )
 }

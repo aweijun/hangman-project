@@ -8,13 +8,18 @@ function AlertDuplicate(props) {
   return isVisible? (
     <Alert 
       status='error'   
+      flexDirection='column'
+      justifyContent = "center"
       alignItems='center'
-      justifyContent='center'
+      justifyItems='center'
       textAlign='center'
+      variant='subtle'
       >
-      <AlertIcon/>
+      <AlertIcon boxSize='40px'/>
       <Box>
-        <AlertTitle>Error</AlertTitle>
+        <AlertTitle>
+          Error
+        </AlertTitle>
         <AlertDescription>
           This letter has already been added
         </AlertDescription>

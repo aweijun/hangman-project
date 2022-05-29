@@ -28,7 +28,7 @@ function GameScreen() {
   
 
   
-  useEffect(() => endGame(), [count])
+  useEffect(() => endGame())
 
 
   const popupDelay = () => {

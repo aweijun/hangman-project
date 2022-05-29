@@ -3,7 +3,7 @@ import React from 'react'
 
 function HangManDisplay(props) {
   return (
-    <Flex w='30vw' h='30vw'>
+    <Flex w='30vh' h='30vh'>
       {displayImage(props.count)}
     </Flex>
   )

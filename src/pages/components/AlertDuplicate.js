@@ -6,7 +6,12 @@ function AlertDuplicate(props) {
   const isVisible = props.isVisible
   
   return isVisible? (
-    <Alert status='error'>
+    <Alert 
+      status='error'   
+      alignItems='center'
+      justifyContent='center'
+      textAlign='center'
+      >
       <AlertIcon/>
       <Box>
         <AlertTitle>Error</AlertTitle>

@@ -1,4 +1,4 @@
-import { Button, color, Flex, Heading, Text, useDisclosure, VStack } from '@chakra-ui/react'
+import { Button, color, Flex, Grid, GridItem, Heading, Text, useDisclosure, VStack } from '@chakra-ui/react'
 import { isVisible } from '@testing-library/user-event/dist/utils'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -81,10 +81,10 @@ function GameScreen() {
   return (
     <VStack>
       <Heading>
-        GameScreen
+        HangMan
       </Heading>
     <Text>
-      Number of tries left {count}  
+      Number of tries left : {count}  
     </Text>
     <HangManDisplay count = {count}/>
     <Heading>
@@ -93,17 +93,27 @@ function GameScreen() {
     <Text>
       {hint}
     </Text>
-    <Flex flexWrap={'wrap'} padding={5}>
+    <Grid templateColumns='repeat(6, 1fr)' gap={2}>
       {LETTERS.split("").map(letter => (
-        <Button value = {letter.toUpperCase()} margin={'2px'} onClick={handleInput} color={setButtonColor(letter)}>
-          {letter}
-        </Button>
+        <GridItem>
+          <Button 
+            maxW={"10vh"}
+            minW={"7vh"}
+            maxH={"10vh"}
+            minH={"7vh"}
+            value = {letter.toUpperCase()} 
+            onClick={handleInput} 
+            color={setButtonColor(letter)}>
+            {letter}
+          </Button>
+        </GridItem>
       ))}
-    </Flex>
+    </Grid>
         <AlertDuplicate isVisible={isOpenDuplicateError}/>
         <EndGameModal isVisible={isOpenEndGameModal} closeModal = {setEndGameModal} word={word} count = {count} success = {count < 7}/>
     </VStack>
   )
+
 }
 
 export default GameScreen

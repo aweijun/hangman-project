@@ -1,4 +1,4 @@
-import { Button, Flex, Input, Textarea } from '@chakra-ui/react'
+import { Button, Flex, Input} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import IncorrectInput from './components/IncorrectInput'
@@ -37,8 +37,8 @@ function StartGameScreen() {
   return (
     <Flex flexDir={"column"} padding={10} justifyContent={"space-evenly"} h={"100vh"}>
       <div>Hangman The Game</div>
-      <Textarea onChange={handleInputWord}>{word}</Textarea>
-      <Textarea onChange={handleInputHint}>{hint}</Textarea>
+      <Input placeholder='Guess Word' onChange={handleInputWord}/>
+      <Input placeholder='Hint' onChange={handleInputWord}/>
       <Button onClick={() => submitWord()}>Start</Button>
       <IncorrectInput isVisible={isErrorVisible}/>
     </Flex>

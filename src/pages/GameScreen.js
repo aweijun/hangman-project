@@ -51,7 +51,7 @@ function GameScreen() {
 
   const setButtonColor = (letter) => {
     if (!guesses.includes(letter)) {
-      return "grey"
+      return 'whiteAlpha'
     } else {
       if (correctLetters.includes(letter)) {
         return "green"
@@ -79,7 +79,8 @@ function GameScreen() {
   }
 
   return (
-    <VStack>
+    <VStack
+    >
       <Heading>
         HangMan
       </Heading>
@@ -97,13 +98,14 @@ function GameScreen() {
       {LETTERS.split("").map(letter => (
         <GridItem>
           <Button 
-            maxW={"10vh"}
-            minW={"7vh"}
-            maxH={"10vh"}
-            minH={"7vh"}
+            maxW={"6vh"}
+            minW={"5vh"}
+            maxH={"6vh"}
+            minH={"5vh"}
             value = {letter.toUpperCase()} 
             onClick={handleInput} 
-            color={setButtonColor(letter)}>
+            color = {"whiteAlpha"}
+            colorScheme={setButtonColor(letter)}>
             {letter}
           </Button>
         </GridItem>

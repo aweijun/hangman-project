@@ -13,7 +13,7 @@ const WordLibrary = [
    {hint: "This company acquired the mobile phone maker Motorola Mobility in 2012.",
    word: "Google"},
    {hint: "This company’s first customer was Walt Disney Productions in 1939",
-   word: "Hewlett Packard"},
+   word: "HewlettPackard"},
    {hint: "This company was purchase by Amazon for 970 million",
    word: "Twitch"},
   ]

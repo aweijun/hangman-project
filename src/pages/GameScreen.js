@@ -8,12 +8,22 @@ import HangManDisplay from './components/HangManDisplay'
 
 
 function GameScreen() {
+
+  const displayLetterInit = (e) => {
+    if (e == ' ') {
+      return " - "
+    } else {
+      return " _ "
+    }
+
+  }
   
   
   
   const location = useLocation();
   console.log(location.state)
   const word = location.state["word"].toUpperCase();
+
   const hint = location.state["hint"].toUpperCase();
   
   const [count, setCount] = useState(0) //This is the number of tries
@@ -25,12 +35,6 @@ function GameScreen() {
   
   
   const LETTERS = "abcdefghijklmnopqrstuvwxyz".toUpperCase()
-  
-
-  
-  useEffect(() => endGame())
-
-
   const popupDelay = () => {
     onOpenDuplicatedError()
     setTimeout(() => onCloseDuplicatedError(), 1000)
@@ -70,13 +74,15 @@ function GameScreen() {
     if (guesses.includes(e)) {
       return e
     } else {
-      if (e == ' ') {
-        return " - "
-      } else {
-        return " _ "
-      }
+       return " _ "
     }
   }
+  
+
+  
+  useEffect(() => endGame())
+
+
 
   const displayWord = () => word.split("").map(letter => displayLetter(letter))
 

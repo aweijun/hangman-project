@@ -9,7 +9,7 @@ function StartGameScreen() {
   const [hint, setHint] = useState("")
   const [isErrorVisible, setErrorVisible] = useState(false)
 
-  const regex = /^[A-Z\s]+$/gi;
+  const regex = /^[A-Z]+$/gi;
 
   let navigate = useNavigate()
 
@@ -29,7 +29,7 @@ function StartGameScreen() {
   const submitWord = () => {
     if (regex.test(word)) {
       console.log(word)
-      navigate("/game", {state: {word: word, hint:hint}})
+      navigate("/game", {state: {word: word.trim(), hint:hint}})
     } else {
       popupDelay()
     }

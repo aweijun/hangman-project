@@ -11,7 +11,7 @@ function IncorrectInput(props) {
       <Box>
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>
-          Word should only contain alphabets and whitespaces.
+          Word should only contain alphabets.
         </AlertDescription>
       </Box>
     </Alert>

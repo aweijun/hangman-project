@@ -65,7 +65,7 @@ function StartGameScreen() {
         maxWidth={'50vw'}
         minW={'60vw'}
         placeholder='Hint'
-        onChange={handleInputWord}/>
+        onChange={handleInputHint}/>
       <Button 
         onClick={() => submitWord()}
         maxH={'7vh'}

@@ -19,7 +19,7 @@ function EndGameModal(props) {
         <ModalBody>
           The word was {word}.
           <br/>
-          You took {count} tries!
+          You made {count} mistakes!
         </ModalBody>
       <ModalFooter justifyContent={"space-evenly"}>
         <Button onClick={() => route("../")}>
@@ -29,7 +29,7 @@ function EndGameModal(props) {
     </ModalContent>
     } else {
       return <ModalContent>
-      <ModalHeader>Try again</ModalHeader>
+      <ModalHeader>Too Bad</ModalHeader>
       <ModalBody>
         The word was {word}.
         <br/>

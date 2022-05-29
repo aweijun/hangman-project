@@ -18,7 +18,6 @@ function GameScreen() {
   
   const [count, setCount] = useState(0) //This is the number of tries
   const [guesses, setGuesses] = useState([]) //This is the list of the given keyboard
-  const guessRef = useRef(guesses)
   const correctLetters = word.split("")
 
   const {isOpen: isOpenDuplicateError, onOpen: onOpenDuplicatedError, onClose: onCloseDuplicatedError} = useDisclosure()
@@ -29,7 +28,7 @@ function GameScreen() {
   
 
   
-  useEffect(() => endGame())
+  useEffect(() => endGame(), [count])
 
 
   const popupDelay = () => {
@@ -84,7 +83,7 @@ function GameScreen() {
   const endGame = () => {
     console.log("end" + displayWord())
     console.log("endjoin" + displayWord().join(""))
-    if (count > 6) {
+    if (count > 5) {
       console.log("You dead")
       setEndGameModal(true)
     } else {
@@ -102,7 +101,7 @@ function GameScreen() {
         HangMan
       </Heading>
     <Text>
-      Number of tries left : {count}  
+      Number of Mistakes : {count}  
     </Text>
     <HangManDisplay count = {count}/>
     <Heading>

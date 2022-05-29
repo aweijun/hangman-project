@@ -50,34 +50,46 @@ function StartGameScreen() {
     minW = {"60vw"}
     minH = {"70vh"}
     maxH={"100vh"}>
-      <Heading>Hangman the Game</Heading>
+      <Heading
+        fontSize={'4xl'}
+      >Hangman the Game</Heading>
       <Input 
+        maxH={'7vh'}
+        minH={'5vh'}
         maxWidth={'50vw'}
         minW={'60vw'}
-        placeholder='Guess Word' 
+        placeholder='Input your word here' 
         onChange={handleInputWord}/>
       <Input 
+        maxH={'7vh'}
+        minH={'5vh'}
         maxWidth={'50vw'}
         minW={'60vw'}
         placeholder='Hint'
         onChange={handleInputWord}/>
       <Button 
         onClick={() => submitWord()}
+        maxH={'7vh'}
+        minH={'5vh'}
         minWidth={'30vw'}
         maxWidth={'50vw'}
         alignSelf="center"
+        fontSize={['xl',]}
         >
         Start
       </Button>
       <IncorrectInput isVisible={isErrorVisible}/>
       <Heading>
-        Choose from a Topic
+        Choose a Topic
       </Heading>
       <Grid templateColumns='repeat(2, 1fr)' gap={10}> 
         {GenerateWords.map((item) => 
           <GridItem>
             <Button
-              w={'20vw'}
+              maxH={'5vh'}
+              minH={'5vh'}
+              minWidth={'30vw'}
+              maxWidth={'50vw'}
               onClick={submitTopic(item.Questions[Math.floor((Math.random()*item.Questions.length))])}
               fontSize = {['xs','sm']}
             >

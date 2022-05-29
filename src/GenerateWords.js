@@ -1,5 +1,5 @@
 const WordLibrary = [
-  {Subject: "coding",
+  {Subject: "Programming",
      Questions: [
       {hint: "James Gosling and his team were cleaning up C++ and accidently wound up with a new language.",
        word: "java"}, 
@@ -13,7 +13,7 @@ const WordLibrary = [
    {hint: "This company acquired the mobile phone maker Motorola Mobility in 2012.",
    word: "Google"},
    {hint: "This company’s first customer was Walt Disney Productions in 1939",
-   word: "Hweleett Packard"},
+   word: "Hewlett Packard"},
    {hint: "This company was purchase by Amazon for 970 million",
    word: "Twitch"},
   ]
